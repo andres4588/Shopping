@@ -19,7 +19,6 @@ var userRoutes = require('./routes/user');
 
 var app = express();
  
-var Uri="mongodb+srv://ventas:ventas@cluster0.7rfit.mongodb.net/<dbname>?retryWrites=true&w=majority";
 
 
 mongoose.connect('mongodb+srv://ventas:ventas@cluster0.7rfit.mongodb.net/<dbname>?retryWrites=true&w=majority', {
