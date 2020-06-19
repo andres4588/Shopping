@@ -4,8 +4,9 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/shopping', {
-  useMongoClient: true
+mongoose.connect('mongodb+srv://ventas:ventas@cluster0.7rfit.mongodb.net/<dbname>?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 var products = [
