@@ -21,7 +21,8 @@ var app = express();
 
 
 mongoose.connect('mongodb://localhost:27017/shopping', {
-  useMongoClient: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
 //mongoose.connect('mongodb://localhost:27017/test', { useMongoClient: true })
