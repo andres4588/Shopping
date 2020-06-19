@@ -17,28 +17,34 @@ var products = [
         price: 10
     }),
     new Product({
-        imagePath: 'http://eu.blizzard.com/static/_images/games/wow/wallpapers/wall2/wall2-1440x900.jpg',
-        title: 'World of Warcraft Video Game',
-        description: 'Also awesome? But of course it was better in vanilla ...',
+        imagePath: 'https://ehosting.be/wp-content/uploads/2015/06/5.jpg',
+        title: 'T-shirt 10',
+        description: 'Large, Medium, Small, XL, XS',
+        price: 75
+    }),
+    new Product({
+        imagePath: 'https://shirtsofcotton.com/en/media/catalog/product/cache/10/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/s/h/shirtsofcotton-t-shirt-soc-06-front-1200px.jpg',
+        title: 'Grey V-Neck T-shirt',
+        description: '95% quality cotton, 5% elastane',
         price: 20
     }),
     new Product({
-        imagePath: 'https://support.activision.com/servlet/servlet.FileDownload?file=00PU000000Rq6tz',
-        title: 'Call of Duty Video Game',
-        description: 'Meh ... nah, it\'s okay I guess',
-        price: 40
-    }),
-    new Product({
-        imagePath: 'https://pmcdeadline2.files.wordpress.com/2014/02/minecraft__140227211000.jpg',
-        title: 'Minecraft Video Game',
-        description: 'Now that is super awesome!',
-        price: 15
-    }),
-    new Product({
-        imagePath: 'https://d1r7xvmnymv7kg.cloudfront.net/sites_products/darksouls3/assets/img/DARKSOUL_facebook_mini.jpg',
-        title: 'Dark Souls 3 Video Game',
-        description: 'I died!',
+        imagePath: 'https://huckberry.imgix.net/spree/products/469614/original/mMKoUUfLXv_proof_nova_series_insulated_jacket_insulated-jackets_0_original.jpg?auto=format%2Ccompress&crop=top&fit=clip&cs=tinysrgb&w=600&ixlib=react-9.0.1&h=600&w=600',
+        title: 'Insulated Jacket',
+        description: ' Primaloft Gold synthetic insulation, 60g',
         price: 50
+    }),
+    new Product({
+        imagePath: 'https://cdn.shopify.com/s/files/1/0055/1242/products/EXP52BMR-ARM-0_2048x.jpg?v=1560205039',
+        title: 'LIGHTWEIGHT BOMBER JACKET',
+        description: 'jacket has water resistant 82gm 100% polyester fabric with a zip front closur',
+        price: 41
+    }),
+    new Product({
+        imagePath: 'https://wwws.dior.com/couture/ecommerce/media/catalog/product/cache/1/zoom_image_1/3000x2000/17f82f742ffe127f42dca9de82fb58b1/7/g/1570207502_943C449A4462_C989_E01_ZH.jpg',
+        title: 'DOWN JACKET',
+        description: 'Slip side pockets',
+        price: 90
     })
 ];
 
