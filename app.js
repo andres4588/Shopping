@@ -20,10 +20,11 @@ var userRoutes = require('./routes/user');
 var app = express();
 
 
-mongoose.connect('mongodb://localhost:27017/shopping', {
+mongoose.connect('mongodb+srv://ventas:<ventas>@cluster0-7rfit.mongodb.net/<shopping>?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
 
 //mongoose.connect('mongodb://localhost:27017/test', { useMongoClient: true })
 
