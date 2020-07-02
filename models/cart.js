@@ -12,7 +12,6 @@ module.exports = function Cart(oldCart) {
         storedItem.price = storedItem.item.price * storedItem.qty;
         this.totalQty++;
         this.totalPrice += storedItem.item.price;
-        console.log(this.totalPrice)
     };
 
     this.reduceByOne = function(id) {

@@ -4,7 +4,8 @@ var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new Schema({
     email: {type: String, required: true},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    rol: {type: String, default: "regular",enum:['regular', 'admin']}
 });
 
 userSchema.methods.encryptPassword = function(password) {
