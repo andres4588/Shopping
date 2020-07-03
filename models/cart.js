@@ -13,7 +13,6 @@ module.exports = function Cart(oldCart) {
         this.totalQty++;
         this.totalPrice += storedItem.item.price;
     };
-
     this.reduceByOne = function(id) {
         this.items[id].qty--;
         this.items[id].price -= this.items[id].item.price;

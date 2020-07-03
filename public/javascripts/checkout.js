@@ -1,4 +1,4 @@
-//Stripe.setPublishableKey('pk_test_m6ZWLYyvkUAqJzr1fvr1uRj2');
+/*//Stripe.setPublishableKey('pk_test_m6ZWLYyvkUAqJzr1fvr1uRj2');
 
 var $form = $('#checkout-form');
 
@@ -36,4 +36,4 @@ function stripeResponseHandler(status, response) {
         $form.get(0).submit();
 
     }
-}
+}*/

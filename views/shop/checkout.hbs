@@ -6,6 +6,22 @@
            
         </div>
         <form action="/checkout" method="post" id="checkout-form">
+        <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" required name="name">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" class="form-control" required name="address">
+                    </div>
+                </div>
+                <hr>
+                
+            </div>
 
             <button type="submit" class="btn btn-success">Buy now</button>
         </form>
@@ -13,4 +29,3 @@
 </div>
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript" src="javascripts/checkout.js"></script>
