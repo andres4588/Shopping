@@ -16,6 +16,7 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 
 var routes = require('./routes/index');
 var userRoutes = require('./routes/user');
+var adminRoutes = require('./routes/admin');
 
 var app = express();
  
@@ -61,7 +62,9 @@ app.use(function(req, res, next) {
 });
 
 app.use('/user', userRoutes);
+app.use('/admin', adminRoutes);
 app.use('/', routes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
