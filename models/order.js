@@ -6,6 +6,7 @@ var schema = new Schema({
     cart: {type: Object, required: true},
     address: {type: String, required: true},
     name: {type: String, required: true},
+    date: {type: Date, default: Date.now},
 });
 
 module.exports = mongoose.model('Order', schema);
