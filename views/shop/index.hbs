@@ -16,12 +16,16 @@
                         <h3>{{ this.title }}</h3>
                         <p class="description">{{ this.description }}</p>
                         <div class="clearfix">
+                            {{#if this.discount}}
+                            <div class="price pull-left"><s>${{ this.price }}</s></div>
+                            {{else}}
                             <div class="price pull-left">${{ this.price }}</div>
+                               {{/if}}
                              <a href="/add-to-cart/{{this._id}}" class="btn btn-success pull-right" role="button">Add to Shopping Cart</a>
                         </div>
                         <div class="clearfix">
                             {{#if this.discount}}
-                            <div class="price pull-left">${{ this.discount }}</div>
+                            <div class="priceDiscount pull-left">${{ this.priceDiscount }}</div>
                             {{/if}}           
                         </div>
                     </div>
