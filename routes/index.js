@@ -31,7 +31,6 @@ router.get('/add-to-cart/:id', function(req, res, next) {
        }
         cart.add(product, product.id);
         req.session.cart = cart;
-        console.log(req.session.cart);
         res.redirect('/');
     });
 });
@@ -62,23 +61,6 @@ router.get('/shopping-cart', function(req, res, next) {
     res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
 });
 
-/*router.post('/checkout', isLoggedIn, function(req, res, next) {
-    if (!req.session.cart) {
-        return res.redirect('/shopping-cart');
-    }
-    var cart = new Cart(req.session.cart);
-    var order = new Order({
-        cart: cart.totalQty,
-    });
-    order.save(function(err, result) {
-        //req.flash('success', 'Successfully bought product!');
-        req.session.cart = null;
-        res.redirect('/');
-    });
-    
-   
-});
-*/
 router.get('/checkout', isLoggedIn, function(req, res, next) {
     if (!req.session.cart) {
         return res.redirect('/shopping-cart');
@@ -93,8 +75,12 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
         return res.redirect('/shopping-cart');
     }
     var cart = new Cart(req.session.cart);
-    var order = new Order({
-        cart: cart.totalQty
+    var order = new Order({ 
+        user: req.user,
+        cart: cart,
+        address: req.body.address,
+        name: req.body.name,
+        date: req.body.date,
     
     });
     order.save(function(err, result) {
@@ -102,15 +88,14 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
         req.session.cart = null;
         res.redirect('/');
     });
-    
-   
+    }
 });
 
 module.exports = router;
 
 function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
+    if (req.isAuthenticated()) {   
+        return next(); 
     }
     req.session.oldUrl = req.url;
     res.redirect('/user/signin');
