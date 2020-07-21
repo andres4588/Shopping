@@ -88,14 +88,14 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
         req.session.cart = null;
         res.redirect('/');
     });
-    }
+     
 });
 
 module.exports = router;
 
 function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {   
-        return next(); 
+    if (req.isAuthenticated()) {
+        return next();
     }
     req.session.oldUrl = req.url;
     res.redirect('/user/signin');
