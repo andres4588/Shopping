@@ -7,17 +7,23 @@ var flash = require('connect-flash');
 
 router.use(flash());
 
-router.get('/', function(req, res, next) {
+router.get('/', isLoggedIn,function(req, res, next) {
   var successMsg = req.flash('test')[0];
     //var successMsg = req.flash('success')[1];
     res.render('admin/configuration', {title: 'Shopping Cart', successMsg: successMsg, noMessages: !successMsg});
 });
 
-router.post('/update', function(req, res, next) {
-    var currentDiscount;
+router.post('/update', isLoggedIn, function(req, res, next) {
+    var currentDiscount=parseInt(req.body.discountup);
     Product.find(function (err, docs) {
-      currentDiscount=docs[0].discount
-        Product.updateMany({ discount: currentDiscount }, { discount: parseInt(req.body.discountup) }, function(
+      let price;
+      let total;
+      for (var i=0, j=docs.length; i<j; i++) {
+      
+        price=docs[i].price;
+        price=price*(currentDiscount/100);
+        total= docs[i].price - price;
+        Product.updateMany({ price: docs[i].price }, { discount: parseInt(req.body.discountup), priceDiscount : total }, function(
             err,
             result
           ) {
@@ -27,7 +33,9 @@ router.post('/update', function(req, res, next) {
               //console.log((result));
             }
           });
+        }
     })
+   
     res.redirect('/admin');
 });
 
@@ -75,7 +83,7 @@ router.post('/history', function(req, res, next) {
   //req.flash('test', 'Historial actualizado');
 });
 
-router.get('/history', function(req, res, next) {
+router.get('/history',isLoggedIn, function(req, res, next) {
   History.find(function (err, docs) {
     let listSales=[]
     let listDates=[]
@@ -92,3 +100,13 @@ router.get('/history', function(req, res, next) {
 
 
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) { 
+    if (req.user.rol== "admin") { 
+      return next();    
+    }    
+  }
+  req.session.oldUrl = req.url;
+  res.redirect('/user/signin');
+}

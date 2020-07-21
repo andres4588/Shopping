@@ -2,23 +2,45 @@ module.exports = function Cart(oldCart) {
     this.items = oldCart.items || {};
     this.totalQty = oldCart.totalQty || 0;
     this.totalPrice = oldCart.totalPrice || 0;
+    this.availableMoney = oldCart.availableMoney || 500;
 
     this.add = function(item, id) {
         var storedItem = this.items[id];
         if (!storedItem) {
-            storedItem = this.items[id] = {item: item, qty: 0, price: 0};
+            storedItem = this.items[id] = {item: item, qty: 0, price: 0, availableMoney: 500};
         }
-        storedItem.qty++;
-        storedItem.price = storedItem.item.price * storedItem.qty;
-        this.totalQty++;
-        this.totalPrice += storedItem.item.price;
+        if(this.availableMoney > 420) {
+            storedItem.qty++;
+            if (storedItem.item.discount = 0) {
+                storedItem.price = storedItem.item.price * storedItem.qty;
+                storedItem.availableMoney = storedItem.item.availableMoney - storedItem.price;
+                this.totalPrice += storedItem.item.price;
+                this.availableMoney -= storedItem.item.price;
+            }else {
+                storedItem.price = storedItem.item.priceDiscount * storedItem.qty;
+                storedItem.availableMoney = storedItem.item.availableMoney - storedItem.price;
+                this.totalPrice += storedItem.item.priceDiscount;
+                this.availableMoney -= storedItem.item.priceDiscount;
+            }
+            this.totalQty++;
+        }else {
+            //console.log("bajo")
+        }    
     };
     this.reduceByOne = function(id) {
         this.items[id].qty--;
-        this.items[id].price -= this.items[id].item.price;
-        this.totalQty--;
-        this.totalPrice -= this.items[id].item.price;
-
+        if (this.items[id].discount = 0) {
+            this.items[id].price -= this.items[id].item.price;
+            this.items[id].availableMoney += this.items[id].item.price;
+            this.totalPrice -= this.items[id].item.price;
+            this.availableMoney += this.items[id].item.price;
+        } else{
+            this.items[id].priceDiscount -= this.items[id].item.priceDiscount;
+            this.items[id].availableMoney += this.items[id].item.priceDiscount;
+            this.totalPrice -= this.items[id].item.priceDiscount;
+            this.availableMoney += this.items[id].item.priceDiscount;
+        } 
+        this.totalQty--;        
         if (this.items[id].qty <= 0) {
             delete this.items[id];
         }
@@ -26,7 +48,13 @@ module.exports = function Cart(oldCart) {
 
     this.removeItem = function(id) {
         this.totalQty -= this.items[id].qty;
-        this.totalPrice -= this.items[id].price;
+        if (this.items[id].discount = 0) {
+            this.totalPrice -= this.items[id].price;
+            this.availableMoney += this.items[id].price;
+        } else {
+            this.totalPrice -= this.items[id].priceDiscount;
+            this.availableMoney += this.items[id].priceDiscount;
+        }
         delete this.items[id];
     };
     
@@ -35,7 +63,6 @@ module.exports = function Cart(oldCart) {
         for (var id in this.items) {
             arr.push(this.items[id]);
         }
-        //console.log(arr)
         return arr;
     };
 };
