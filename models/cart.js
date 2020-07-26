@@ -48,14 +48,10 @@ module.exports = function Cart(oldCart) {
 
     this.removeItem = function(id) {
         this.totalQty -= this.items[id].qty;
-        if (this.items[id].discount = 0) {
-            this.totalPrice -= this.items[id].price;
-            this.availableMoney += this.items[id].price;
-        } else {
-            this.totalPrice -= this.items[id].priceDiscount;
-            this.availableMoney += this.items[id].priceDiscount;
-        }
-        delete this.items[id];
+        this.totalPrice -= this.items[id].price;
+        this.availableMoney += this.items[id].price
+        this.availableMoney = Math.floor(this.availableMoney * 100) / 100;
+        delete this.items[id];   
     };
     
     this.generateArray = function() {
